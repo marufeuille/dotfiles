@@ -1,0 +1,30 @@
+theme = "dracula"
+
+[editor]
+line-number = "relative"        # さっきのやつ。慣れましょう
+cursorline = true
+bufferline = "multiple"
+popup-border = "all"            # ポップアップに枠線（見やすい）
+shell = ["zsh", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+right = ["diagnostics", "selections", "position", "file-type"]
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
+
+[editor.soft-wrap]
+enable = true                   # 長い行を折り返し表示
