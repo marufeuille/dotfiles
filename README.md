@@ -5,14 +5,20 @@ macOS の設定ファイルを管理するリポジトリ。bare repo 方式で 
 ## 構成
 
 ```
-~/.zshrc              # source ハブ（各ファイルを読み込むだけ）
+~/.zshrc                        # source ハブ（各ファイルを読み込むだけ）
 ~/.zsh/
-  omz.zsh             # Oh My Zsh (テーマ・プラグイン)
-  editor.zsh           # エディタ設定 (nvim / vim)
-  lang.zsh             # 言語ランタイム (pyenv, Volta, bun)
-  path.zsh             # PATH 追加・外部 SDK (GCloud, OpenFaaS 等)
-  aliases.zsh          # エイリアス
-  tools.zsh            # ツール初期化 (yazi, starship)
+  omz.zsh                       # Oh My Zsh (テーマ・プラグイン)
+  editor.zsh                    # エディタ設定 (nvim / vim)
+  lang.zsh                      # 言語ランタイム (pyenv, Volta, bun)
+  path.zsh                      # PATH 追加・外部 SDK (GCloud, OpenFaaS 等)
+  aliases.zsh                   # エイリアス
+  tools.zsh                     # ツール初期化 (yazi, starship)
+~/.gitconfig                    # Git 設定 (delta, merge 等)
+~/.config/git/ignore            # グローバル gitignore
+~/.config/nvim/                 # Neovim (LazyVim)
+~/.config/yazi/                 # yazi ファイルマネージャ
+~/.config/lazygit/config.yml    # lazygit
+~/.config/helix/config.toml    # Helix エディタ
 ```
 
 ## 使い方
