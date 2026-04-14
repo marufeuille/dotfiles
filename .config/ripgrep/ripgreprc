@@ -1,0 +1,22 @@
+# ripgrep 設定 (RIPGREP_CONFIG_PATH から読まれる)
+
+# スマートケース (小文字=大小無視 / 大文字混在=区別)
+--smart-case
+
+# 隠しファイルも対象 (.git は別途除外)
+--hidden
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!.venv/*
+--glob=!dist/*
+--glob=!build/*
+
+# 色付け
+--colors=line:style:bold
+--colors=path:fg:cyan
+--colors=match:fg:red
+--colors=match:style:bold
+
+# 大きなバイナリをスキップ
+--max-columns=300
+--max-columns-preview

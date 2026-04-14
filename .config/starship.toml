@@ -1,0 +1,68 @@
+# シンプル構成: ディレクトリ + git + プロンプト記号のみ
+
+# 1行プロンプト、失敗時は赤
+format = """
+$directory$git_branch$git_status$character"""
+
+add_newline = false
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style) "
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold yellow"
+format = "[$all_status$ahead_behind]($style) "
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# 不要なモジュールは全部無効化
+[aws]
+disabled = true
+[gcloud]
+disabled = true
+[package]
+disabled = true
+[nodejs]
+disabled = true
+[python]
+disabled = true
+[rust]
+disabled = true
+[golang]
+disabled = true
+[java]
+disabled = true
+[ruby]
+disabled = true
+[docker_context]
+disabled = true
+[cmd_duration]
+disabled = true
+[time]
+disabled = true
+[battery]
+disabled = true
+[hostname]
+disabled = true
+[username]
+disabled = true
