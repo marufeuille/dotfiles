@@ -14,7 +14,7 @@ if [ -n "$YAZI_LEVEL" ]; then
 fi
 
 # starship prompt
-eval "$(starship init zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
 if [ -n "$YAZI_LEVEL" ]; then
   RPROMPT="%F{yellow}(yazi)%f"
 fi
