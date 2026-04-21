@@ -99,6 +99,34 @@ cmux-pr() {
   pr_url=$(print -r -- "$pr_json" | jq -r '.url')
   pr_number=$(print -r -- "$pr_json" | jq -r '.number')
 
+  # PR 専用の worktree を用意する（既にあれば再利用）。
+  #   ~/dev/worktrees/<repo>/pr-<N> に配置し、ローカルブランチ pr-<N> を
+  #   作成して PR の HEAD を指す。
+  local repo_name wt_path branch
+  repo_name=$(basename "$repo_root")
+  wt_path="$HOME/dev/worktrees/${repo_name}/pr-${pr_number}"
+  branch="pr-${pr_number}"
+
+  if ! git -C "$repo_root" show-ref --verify --quiet "refs/heads/${branch}"; then
+    if ! git -C "$repo_root" fetch origin "pull/${pr_number}/head" >/dev/null 2>&1; then
+      print -u2 "cmux-pr: PR #${pr_number} の fetch に失敗しました"
+      return 1
+    fi
+    if ! git -C "$repo_root" branch "${branch}" FETCH_HEAD >/dev/null 2>&1; then
+      print -u2 "cmux-pr: ブランチ ${branch} の作成に失敗しました"
+      return 1
+    fi
+  fi
+
+  if ! git -C "$repo_root" worktree list --porcelain \
+       | awk '$1=="worktree"{print $2}' | grep -Fxq "$wt_path"; then
+    mkdir -p "${wt_path:h}"
+    if ! git -C "$repo_root" worktree add "$wt_path" "$branch" >/dev/null 2>&1; then
+      print -u2 "cmux-pr: worktree の作成に失敗しました ($wt_path)"
+      return 1
+    fi
+  fi
+
   local lg_surface="$CMUX_SURFACE_ID"
   local ws="$CMUX_WORKSPACE_ID"
 
@@ -127,12 +155,12 @@ cmux-pr() {
   # 新しいペインの shell 起動が落ち着くまで待つ
   sleep 2
 
-  # yazi を起動。Enter で $EDITOR (=nvim) が開く。
-  cmux send --surface "$yazi_surface" "cd ${(q)repo_root} && yazi" || true
+  # yazi を起動。Enter で $EDITOR (=nvim) が開く。cwd は worktree。
+  cmux send --surface "$yazi_surface" "cd ${(q)wt_path} && yazi" || true
   cmux send-key --surface "$yazi_surface" enter || true
 
   # 自分のペイン（左上）で lazygit を起動。`cmux send` で自分に送ると
   # prompt タイミングに依存するため、直接 exec に置き換える。
-  cd "$repo_root" 2>/dev/null || true
-  exec lazygit --path "$repo_root"
+  cd "$wt_path" 2>/dev/null || true
+  exec lazygit --path "$wt_path"
 }
