@@ -10,6 +10,7 @@ source ~/.zsh/git.zsh      # Git関連のエイリアス
 source ~/.zsh/tools.zsh    # ツール (yazi, starship)
 source ~/.zsh/search.zsh   # 検索系 (fzf, zoxide, ripgrep)
 source ~/.zsh/cmux.zsh     # cmux ヘルパー (cmux-pr など)
+[[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh  # 機密情報 (Git管理外)
 source ~/.zsh/claude-glm.zsh
 
 # Amazon Q post block. Keep at the bottom of this file.

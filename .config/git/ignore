@@ -1,1 +1,6 @@
 **/.claude/settings.local.json
+
+# シークレット類（APIキーなど）は絶対にコミットしない
+.zsh/secrets.zsh
+**/*.secret
+**/secrets.zsh
