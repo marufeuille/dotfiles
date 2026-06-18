@@ -9,6 +9,10 @@ source ~/.zsh/aliases.zsh  # エイリアス
 source ~/.zsh/tools.zsh    # ツール (yazi, starship)
 source ~/.zsh/search.zsh   # 検索系 (fzf, zoxide, ripgrep)
 source ~/.zsh/cmux.zsh     # cmux ヘルパー (cmux-pr など)
+source ~/.zsh/claude-glm.zsh
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
+export PATH=$PATH:/Users/masahiro/Library/Android/sdk/platform-tools
+
