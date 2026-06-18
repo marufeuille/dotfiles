@@ -6,6 +6,7 @@ source ~/.zsh/editor.zsh   # エディタ
 source ~/.zsh/lang.zsh     # 言語/ランタイム (pyenv, Volta, bun)
 source ~/.zsh/path.zsh     # PATH・外部SDK
 source ~/.zsh/aliases.zsh  # エイリアス
+source ~/.zsh/git.zsh      # Git関連のエイリアス
 source ~/.zsh/tools.zsh    # ツール (yazi, starship)
 source ~/.zsh/search.zsh   # 検索系 (fzf, zoxide, ripgrep)
 source ~/.zsh/cmux.zsh     # cmux ヘルパー (cmux-pr など)
