@@ -12,7 +12,11 @@ macOS の設定ファイルを管理するリポジトリ。bare repo 方式で 
   lang.zsh                      # 言語ランタイム (pyenv, Volta, bun)
   path.zsh                      # PATH 追加・外部 SDK (GCloud, OpenFaaS 等)
   aliases.zsh                   # エイリアス
+  git.zsh                       # Git関連のエイリアス
   tools.zsh                     # ツール初期化 (yazi, starship)
+  search.zsh                    # 検索系 (fzf, zoxide, ripgrep)
+  cmux.zsh                      # cmux ヘルパー
+  claude-glm.zsh                # Claude GLM設定
 ~/.gitconfig                    # Git 設定 (delta, merge 等)
 ~/.config/git/ignore            # グローバル gitignore
 ~/.config/nvim/                 # Neovim (LazyVim)
@@ -23,22 +27,39 @@ macOS の設定ファイルを管理するリポジトリ。bare repo 方式で 
 
 ## 使い方
 
-`dot` は `git --git-dir=$HOME/.dotfiles --work-tree=$HOME` のエイリアス。
+### Dotfiles管理用エイリアス
+
+`dotfiles` は `git --git-dir=$HOME/.dotfiles --work-tree=$HOME` のエイリアス。
 
 ```bash
-dot status                    # 変更確認
-dot add ~/.zsh/editor.zsh     # ファイル追加
-dot commit -m "update editor" # コミット
-dot push                      # リモートに反映
+dotfiles status                    # 変更確認 (短縮: dfs)
+dotfiles add ~/.zsh/editor.zsh     # ファイル追加 (短縮: dfa)
+dotfiles commit -m "update editor" # コミット (短縮: dfc)
+dotfiles push                      # リモートに反映 (短縮: dfp)
+dotfiles pull                      # リモートから取得 (短縮: dfpull)
+dotfiles log                       # ログ表示 (短縮: dfl)
+```
+
+### 一般的なGitエイリアス
+
+```bash
+gs  # git status
+ga  # git add
+gc  # git commit
+gp  # git push
+gl  # git log --oneline --graph --decorate -10
+gb  # git branch
+gco # git checkout
+gd  # git diff
 ```
 
 ## セットアップ（別マシン）
 
 ```bash
-git clone --bare <url> ~/.dotfiles
-alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-dot config status.showUntrackedFiles no
-dot checkout
+git clone --bare git@github.com:marufeuille/dotfiles.git ~/.dotfiles
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dotfiles config status.showUntrackedFiles no
+dotfiles checkout
 ```
 
-既存ファイルと競合する場合は、バックアップしてから `dot checkout` を再実行する。
+既存ファイルと競合する場合は、バックアップしてから `dotfiles checkout` を再実行する。
