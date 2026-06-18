@@ -1,0 +1,6 @@
+# SOPS設定ファイル
+# dotfilesのシークレットをGoogle KMSで暗号化してGit管理する
+
+creation_rules:
+  - path_regex: ".zsh/secrets.*\\.zsh"
+    gcp_kms: "projects/marufeuille-lab/locations/global/keyRings/dotfiles/cryptoKeys/sops-key"

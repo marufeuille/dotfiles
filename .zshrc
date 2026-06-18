@@ -10,7 +10,16 @@ source ~/.zsh/git.zsh      # Git関連のエイリアス
 source ~/.zsh/tools.zsh    # ツール (yazi, starship)
 source ~/.zsh/search.zsh   # 検索系 (fzf, zoxide, ripgrep)
 source ~/.zsh/cmux.zsh     # cmux ヘルパー (cmux-pr など)
-[[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh  # 機密情報 (Git管理外)
+
+# SOPSで暗号化されたシークレットを読み込む
+if [[ -f ~/.zsh/secrets.sops.zsh ]] && command -v sops >/dev/null 2>&1; then
+  eval "$(sops --decrypt ~/.zsh/secrets.sops.zsh)" 2>/dev/null || {
+    echo "⚠️ secrets.sops.zsh の復号に失敗しました。KMSアクセス権限を確認してください。" >&2
+  }
+elif [[ -f ~/.zsh/secrets.zsh ]]; then
+  source ~/.zsh/secrets.zsh  # フォールバック（平文、Git管理外）
+fi
+
 source ~/.zsh/claude-glm.zsh
 
 # Amazon Q post block. Keep at the bottom of this file.
