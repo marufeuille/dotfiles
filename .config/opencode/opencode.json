@@ -1,0 +1,71 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "pencil": {
+      "command": [
+        "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64",
+        "--app",
+        "desktop"
+      ],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "provider": {
+    "plamo": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "PLaMo",
+      "options": {
+        "baseURL": "https://api.platform.preferredai.jp/v1",
+        "apiKey": "{env:PLAMO_API_KEY}"
+      },
+      "models": {
+        "plamo-3.0-prime": {
+          "name": "PLaMo 3.0 Prime",
+          "limit": {
+            "context": 262144,
+            "output": 20000
+          }
+        },
+        "plamo-3.0-prime-beta": {
+          "name": "PLaMo 3.0 Prime Beta",
+          "limit": {
+            "context": 65536,
+            "output": 20000
+          }
+        },
+        "plamo-2.2-prime": {
+          "name": "PLaMo 2.2 Prime",
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          }
+        }
+      }
+    },
+    "sakana": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Sakana AI",
+      "options": {
+        "baseURL": "https://api.sakana.ai/v1",
+        "apiKey": "{env:SAKANA_API_KEY}"
+      },
+      "models": {
+        "fugu": {
+          "name": "Fugu",
+          "limit": {
+            "context": 1000000,
+            "output": 16000
+          }
+        },
+        "fugu-ultra": {
+          "name": "Fugu Ultra",
+          "limit": {
+            "context": 1000000,
+            "output": 16000
+          }
+        }
+      }
+    }
+  }
+}
