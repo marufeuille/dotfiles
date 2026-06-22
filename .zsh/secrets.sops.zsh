@@ -1,5 +1,5 @@
 {
-	"data": "ENC[AES256_GCM,data:cdvBTwZ6szPLhXhxKZE384myDq5j7aGe0QW/wVRsNFbMfEaoHnxEll7ImGd1wqFqYbleZYwas43yF2IRjxe1LwcXSpObaE25QJx93ALKYf2b37pn9WwUO48a+3fuJKv+0MakEK7v+Rju0hDplJLp84LqcFtiTFiVnKmkDUQKD/8VHNUqipBdxRdFWtq7mGaRHKTBKl0vUuD4mvHbeMLH/Lf+nAhqCdL7hn7b7Svuc5cvjXup++PQ91WzGvDNUdXWTP3FLEPkYubpB7b2/XryovVjOpI6lOuAhoQ6I72OTghxogYF5B21I+UwpALRRtA=,iv:KhRbDB9GSL6YJShems7BIAwZyNg8ShVncxYRgEe56oA=,tag:bNvNP2wItYWmH6Qz37szCg==,type:str]",
+	"data": "ENC[AES256_GCM,data:q0KwqwZ5VGCIpbfjXZ3Ljn5epJHB0NQl9OoITsrB7wTkXZeGt6BRMV8S9zGIWzaYp6izWSHf6hx4/tOF8yYLFj1YJj1K/m5Q8weVS293v70IaXaGfOd5ZcXRjpDaZ7hNzR+RSm9SSsZW4/ARDXMLi9ejrjsLm+hu+JhSMIUZlmtAYSuf9xxu7ObZMyEkC0A1SZSMzNM1vEZVKYemyDvhpYWsfbsdd0jttWGbPgNKfNnFCGZo45wZh1FUnKUj0lMq3lby/xfbw0kD3fUE7mpWhEWU1UFlwe5yKKKOCO9djHFVxDy6wZmHfDj6vr7yLpYanqUNP+gPlmOOBcnYkVHXtx4z3cice0qVoiao0iP8PfXOMKh6felXYglCS39kdV/recCSP74lQayjbxWlP5lBiVuogTUN/74bhxRD4Fq/xb4rxZPq3ImFYYQu4/gnKyHOfppJv2RbxJkWXaeNH+MR6UGovNAkdQYJyDmS/Y4VpxZV83LqIExwc3p4D7ClIWOcWyuwuiet5SzekeGFBNO/G8qiXfAzuJDD3SrXj31lCINj5N6l7v3tDeSTDPnM,iv:IOS38pn2bwAJ+eneU2lyDT0JUT94vfxsu5b0JHboPXg=,tag:DIYyhGXOWoN4uhvT89Z2fg==,type:str]",
 	"sops": {
 		"gcp_kms": [
 			{
@@ -8,8 +8,8 @@
 				"resource_id": "projects/marufeuille-lab/locations/global/keyRings/dotfiles/cryptoKeys/sops-key"
 			}
 		],
-		"lastmodified": "2026-06-18T10:52:35Z",
-		"mac": "ENC[AES256_GCM,data:N/6XjYvqXHvzo4oQIsMdE9SyIjcLNgYppV3tjbSNA5K1gE0FK7PpYubRHhKFud9rgJiI7G8TC88T4pHvqz/+ze0MYGvH+BegR3M9hNLtygLt87ib9JuJD9LqE8nk4TtX2BGewrdxXaxb54HGqWWJTW6500FseDhjnQjYP05h8+g=,iv:cWEzcnR2nbJVW1sKPLNMTA5GFFhGEO4FsaLyAExuwrU=,tag:ndnpcnXZmmphLexyWhNA7g==,type:str]",
+		"lastmodified": "2026-06-22T08:38:28Z",
+		"mac": "ENC[AES256_GCM,data:tfC0KRC7O49h5jbXQHBCVwq05tdpnZsZTPvUXk5fTV14GNxhm4Q2X7DUHrY4xQ5W7gizy6PkGqvSt/7K08DFjLoHaLLLTsaBLGRywZ6a5N8gFKNe//Su3+nKYeQwsmcCzoYh5X8BcdjuDBBhb1p9naQS83QJOMzukfGthnLUh0w=,iv:qCU5Hbm8SZdauq+zZCI9RvQyNUKjhnbO4O0KzCxvKyE=,tag:b3E/FEsemaQIez0KXLXHdw==,type:str]",
 		"unencrypted_suffix": "_unencrypted",
 		"version": "3.13.1"
 	}
