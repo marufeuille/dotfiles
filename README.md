@@ -25,6 +25,8 @@ macOS の設定ファイルを管理するリポジトリ。bare repo 方式で 
 ~/.config/yazi/                 # yazi ファイルマネージャ
 ~/.config/lazygit/config.yml    # lazygit
 ~/.config/helix/config.toml    # Helix エディタ
+~/.config/opencode/opencode.json  # opencode (PLaMo/Fugu 等のプロバイダ定義)
+~/.claude-code-router/config.json # Claude Code Router (PLaMo/Fugu を Claude Code から利用)
 ```
 
 ## 使い方
@@ -104,6 +106,42 @@ gcloud kms keys list-iam-policies sops-key --keyring dotfiles --location global
 
 # .zshrc 起動時に自動復号されます
 ```
+
+## Claude Code で別モデルを使う（GLM / PLaMo / Fugu）
+
+Claude Code は **Anthropic API 形式**しか喋れない。エンドポイント形式で必要な仕掛けが変わる。
+
+| モデル | エンドポイント | 方法 |
+|---|---|---|
+| GLM (z.ai) | **Anthropic 互換** | `ANTHROPIC_BASE_URL` 差し替えのみ → `~/.zsh/claude-glm.zsh` の `claude-glm` 関数 |
+| PLaMo / Fugu | **OpenAI 互換** (`.../v1`) | env 差し替えでは不可。**Claude Code Router (CCR)** で Anthropic↔OpenAI を変換 |
+
+### GLM（Anthropic 互換）
+
+```bash
+claude-glm        # ANTHROPIC_BASE_URL を z.ai に向けて claude を起動（鍵は $GLM_API_KEY）
+```
+
+### PLaMo / Fugu（Claude Code Router 経由）
+
+CCR は Claude Code の裏で動くローカル翻訳プロキシ。設定は `~/.claude-code-router/config.json`（dotfiles 管理）。
+鍵は書かず **環境変数参照**（`$PLAMO_API_KEY` / `$SAKANA_API_KEY`、SOPS secrets で供給）なので平文 commit して安全。
+
+```bash
+# 初回のみ: CCR をインストール
+npm install -g @musistudio/claude-code-router
+
+# secrets が読み込まれたログイン済み zsh から起動すること（CCR が env を継承する）
+ccr code                         # 既定 = sakana,fugu で Claude Code 起動
+# セッション内でモデル切替:
+#   /model sakana,fugu
+#   /model plamo,plamo-3.0-prime
+ccr status                       # 稼働確認
+ccr restart                      # config.json 変更後に再起動
+```
+
+通常の `claude`（CCR 非経由）は本物の Claude のまま影響しない。`opencode` 側でも同じ PLaMo/Fugu を
+`~/.config/opencode/opencode.json` から利用できる（CCR とは別フロントエンドで共存）。
 
 ## セットアップ（別マシン）
 

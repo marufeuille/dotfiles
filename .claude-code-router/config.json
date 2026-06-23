@@ -1,0 +1,35 @@
+{
+  "LOG": true,
+  "API_TIMEOUT_MS": 600000,
+  "Providers": [
+    {
+      "name": "plamo",
+      "api_base_url": "https://api.platform.preferredai.jp/v1/chat/completions",
+      "api_key": "$PLAMO_API_KEY",
+      "models": ["plamo-3.0-prime", "plamo-3.0-prime-beta", "plamo-2.2-prime"],
+      "transformer": {
+        "use": [
+          ["maxtoken", { "max_tokens": 20000 }],
+          "enhancetool"
+        ]
+      }
+    },
+    {
+      "name": "sakana",
+      "api_base_url": "https://api.sakana.ai/v1/chat/completions",
+      "api_key": "$SAKANA_API_KEY",
+      "models": ["fugu", "fugu-ultra"],
+      "transformer": {
+        "use": [
+          ["maxtoken", { "max_tokens": 16000 }],
+          "enhancetool"
+        ]
+      }
+    }
+  ],
+  "Router": {
+    "default": "sakana,fugu",
+    "longContext": "sakana,fugu",
+    "longContextThreshold": 60000
+  }
+}
